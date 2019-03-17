@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>我的导航</title>
+    <link rel="stylesheet" href="./style/style.css">
+</head>
+
+<body>
+    <header></header>
+    <main>
+        <div id="main"></div>
+    </main>
+    <footer></footer>
+
+    <script>
+        var key = [
+            ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0"],
+            ["q", "w", "e", "r", "t", "y", "u", "i", "o", "p"],
+            ["a", "s", "d", "f", "g", "h", "j", "k", "l"],
+            ["z", "x", "c", "v", "b", "n", "m"],
+        ]
+        var hash = {
+            q: "qq.com",
+            w: null,
+            e: null,
+            r: null,
+            t: null,
+            y: null,
+            u: null,
+            i: null,
+            o: null,
+            p: null,
+            a: null,
+            s: null,
+            d: null,
+            f: null,
+            g: null,
+            h: null,
+            j: null,
+            k: null,
+            l: null,
+            z: null,
+            x: null,
+            c: null,
+            v: null,
+            b: null,
+            n: null,
+            m: null,
+            1: null,
+            2: null,
+            3: null,
+            4: null,
+            5: null,
+            6: null,
+            7: null,
+            8: null,
+            9: null,
+            0: null
+
+
+        }
+
+        let hasLocalStorage = JSON.parse(localStorage.getItem("mysite") || null)
+        if (hasLocalStorage) {
+            hash = hasLocalStorage;
+        }
+        var main = document.getElementById("main")
+        for (let i = 0; i < key.length; i++) {
+            var div = document.createElement("div");
+            for (let j = 0; j < key[i].length; j++) {
+                var kbd = document.createElement("kbd");
+                var add = document.createElement("div");
+                var remove = document.createElement("div")
+                var img = document.createElement("img");
+                let url
+
+                kbd.textContent = key[i][j];
+                add.textContent = "E";
+                remove.textContent = "R";
+
+                kbd.setAttribute("id", key[i][j])
+                add.setAttribute("class", "edit")
+                remove.setAttribute("class", "remove")
+
+                img.setAttribute("class", "img");
+                img.setAttribute("width", "16");
+                img.setAttribute("height", "16");
+                img.setAttribute("id","img"+key[i][j]);
+
+                url = getImageUrl(key[i][j]);
+                img.setAttribute("src", url);
+
+                add.setAttribute("data-id", key[i][j])
+                remove.setAttribute("data-id", key[i][j])
+
+                kbd.appendChild(remove);
+                kbd.appendChild(add);
+                kbd.appendChild(img);
+                div.appendChild(kbd);
+                main.appendChild(div);
+
+
+                add.onclick = function (e) {
+                    let keyId = e.target.dataset.id;
+
+                    let x = prompt("给我一个网址", hash[keyId]);
+                    console.log(x);
+                    if(x===null){
+                        x="";
+                    }
+                    let r = /^www\./
+                    if(!x.match(r)){
+                        x="www."+x;
+                    }
+                    hash[keyId] = x;
+                    
+                    localStorage.setItem("mysite", JSON.stringify(hash));
+                    let url = getImageUrl(keyId);
+                    console.log(url);
+                    document.getElementById("img"+keyId).setAttribute("src", url);
+                    e.stopPropagation();
+                }
+                remove.onclick = function (e) {
+                    var keyId = e.target.dataset.id;
+                   
+                    hash[keyId] = undefined;
+                    localStorage.setItem("mysite", JSON.stringify(hash));
+                    // console.log(document.getElementById("img"+keyId))
+                    // document.getElementById().removeAttribute("src");
+                    document.getElementById("img"+keyId).removeAttribute("src");
+                    e.stopPropagation();
+                }
+
+                kbd.onclick = function (e) {
+                    let website = e.target.id;
+                    
+                    if (hash[website] === undefined) {
+                       
+                        return 
+
+                    } else {
+                        window.open("http://" + hash[website], "_blank")
+                    }
+                }
+
+            }
+        }
+        document.onkeydown = function (e) {
+            console.log(e);
+            let website = hash[e.key];
+            if (website === undefined) {
+                return
+            } else {
+                window.open("http://" + website, "_blank")
+            }
+        }
+
+
+        function getImageUrl(key) {
+            let url;
+            if (hash[key]) {
+                url = 'http://' + hash[key] + '/favicon.ico'
+            } else {
+                url = null;
+            }
+            return url
+        }
+    </script>
+</body>
+
+</html>
