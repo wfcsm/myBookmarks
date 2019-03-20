@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>键盘仿制</title>
+    <link rel="stylesheet" href="./style/style2.css">
+</head>
+
+<body>
+    <header></header>
+    <main>
+        <div id="main">
+            <ol id="keyboard " class="macbook-pro">
+                <li><span>~</span>`</li>
+                <li><span>!</span>1</li>
+                <li><span>@</span>2</li>
+                <li><span>#</span>3</li>
+                <li><span>$</span>4</li>
+                <li><span>%</span>5</li>
+                <li><span>^</span>6</li>
+                <li><span>&amp;</span>7</li>
+                <li><span>*</span>8</li>
+                <li><span>(</span>9</li>
+                <li><span>)</span>0</li>
+                <li><span>_</span>-</li>
+                <li><span>+</span>=</li>
+                <li class="special noMarginLeft" id="delete"><span class="r">delete</span></li>
+                <li class="clear special " id="tab"><span class="l">tab</span></li>
+                <li class="nav">Q</li>
+                <li class="nav">W</li>
+                <li class="nav">E</li>
+                <li class="nav">R</li>
+                <li class="nav">T</li>
+                <li class="nav">Y</li>
+                <li class="nav">U</li>
+                <li class="nav">I</li>
+                <li class="nav">O</li>
+                <li class="nav">P</li>
+                <li><span>{</span>[</li>
+                <li><span>}</span>]</li>
+                <li class="noMarginLeft"><span>|</span>\</li>
+                <li class="clear special " id="caps-lock"><span class="l">caps lock</span></li>
+                <li class="nav">A</li>
+                <li class="nav">S</li>
+                <li class="nav">D</li>
+                <li class="nav">F</li>
+                <li class="nav">G</li>
+                <li class="nav">H</li>
+                <li class="nav">J</li>
+                <li class="nav">K</li>
+                <li class="nav">L</li>
+                <li><span>:</span>;</li>
+                <li><span>"</span>'</li>
+                <li class="special noMarginLeft " id="enter"><span class="enter">enter</span>
+                    <sapn class="r">return</sapn>
+                </li>
+                <li class="clear shift special "><span class="l">shift</span></li>
+                <li class="nav">Z</li>
+                <li class="nav">X</li>
+                <li class="nav">C</li>
+                <li class="nav">V</li>
+                <li class="nav">B</li>
+                <li class="nav">N</li>
+                <li class="nav">M</li>
+                <li><span>&lt;</span>,</li>
+                <li><span>&gt;</span>.</li>
+                <li><span>?</span>/</li>
+                <li class="special shift noMarginLeft "><span class="r">shift</span></li>
+                <li class="clear tall  special"><span class="l">fn</span></li>
+                <li class="special tall  "><span class="l">control</span></li>
+                <li class="special tall  "><span class="top altTopL">alt</span><span class="option">option</span></li>
+                <li class="special tall command "><span class="top topr">&#8984;</span><span class="l">command</span></li>
+                <li class="special tall" id="space"> </li>
+                <li class="special tall command "><span class="top topl">&#8984;</span><span class="l">command</span></li>
+                <li class="special tall  "><span class="top altTopR">alt</span><span class="option">option</span></li>
+
+                <li class="arrow up noMarginLeft">&#8593;</li>
+                <li class="arrow">&#8592;</li>
+                <li class="arrow down">&#8595;</li>
+                <li class="arrow noMarginLeft">&#8594;</li>
+
+
+            </ol>
+        </div>
+    </main>
+    <footer></footer>
+    <script>
+        var hash = {
+            q: "www.qq.com",
+            w: null,
+            e: null,
+            r: null,
+            t: null,
+            y: null,
+            u: null,
+            i: null,
+            o: null,
+            p: null,
+            a: null,
+            s: null,
+            d: null,
+            f: null,
+            g: null,
+            h: null,
+            j: null,
+            k: null,
+            l: null,
+            z: null,
+            x: null,
+            c: null,
+            v: null,
+            b: null,
+            n: null,
+            m: null,
+            1: null,
+            2: null,
+            3: null,
+            4: null,
+            5: null,
+            6: null,
+            7: null,
+            8: null,
+            9: null,
+            0: null
+
+        }
+
+        let nav = document.getElementsByClassName("nav");
+        console.log(nav[0].innerText.toLowerCase())
+
+        let hasLocalStorage = JSON.parse(localStorage.getItem("mysite") || null)
+        if (hasLocalStorage) {
+            hash = hasLocalStorage;
+        }
+
+        for (let i = 0; i < nav.length; i++) {
+            nav[i].setAttribute("id", nav[i].innerText.toLowerCase())
+            var add = document.createElement("div");
+            var remove = document.createElement("div")
+            var img = document.createElement("img");
+            add.textContent = "E";
+            remove.textContent = "R";
+
+            add.setAttribute("class", "edit")
+            remove.setAttribute("class", "remove")
+            add.setAttribute("data-id", nav[i].getAttribute("id"))
+            remove.setAttribute("data-id", nav[i].getAttribute("id"))
+
+            img.setAttribute("class", "img");
+            img.setAttribute("width", "16");
+            img.setAttribute("height", "16");
+            img.setAttribute("id", "img" + nav[i].innerText.toLowerCase());
+
+            url = getImageUrl(nav[i].getAttribute("id"));
+            img.setAttribute("src", url);
+            nav[i].appendChild(remove);
+            nav[i].appendChild(add);
+            nav[i].appendChild(img);
+
+            add.onclick = function (e) {
+                let keyId = e.target.dataset.id;
+
+                let x = prompt("给我一个网址", hash[keyId]);
+                console.log(x);
+                if (x === null) {
+                    x = "";
+                }
+                let r = /^www\./
+                if (!x.match(r)) {
+                    x = "www." + x;
+                }
+                hash[keyId] = x;
+
+                localStorage.setItem("mysite", JSON.stringify(hash));
+                let url = getImageUrl(keyId);
+                console.log(url);
+                document.getElementById("img" + keyId).setAttribute("src", url);
+                e.stopPropagation();
+            }
+            remove.onclick = function (e) {
+                var keyId = e.target.dataset.id;
+                hash[keyId] = undefined;
+                localStorage.setItem("mysite", JSON.stringify(hash));
+                // console.log(document.getElementById("img"+keyId))
+                // document.getElementById().removeAttribute("src");
+                document.getElementById("img" + keyId).removeAttribute("src");
+                e.stopPropagation();
+            }
+
+            nav[i].onclick = function (e) {
+                let website = e.target.id;
+
+                if (hash[website] === null || hash[website] === undefined) {
+
+                    return
+
+                } else {
+                    window.open("http://" + hash[website], "_blank")
+                }
+            }
+
+        }
+        document.onkeydown = function (e) {
+            document.getElementById(e.key).style.cssText = " top: 2px;boxShadow: 2px 0 2px rgba(0, 0, 0, .5);"
+        }
+        document.onkeyup = function (e) {
+            document.getElementById(e.key).style.cssText = " "
+
+            setTimeout(function () {
+                let website = hash[e.key];
+                if (website === null || website === undefined) {
+                    return
+                } else {
+                    window.open("http://" + website, "_blank")
+                }
+            }, 200);
+
+        }
+
+        function getImageUrl(key) {
+
+            let url;
+            if (hash[key]) {
+                url = 'http://' + hash[key] + '/favicon.ico'
+            } else {
+                url = null;
+            }
+            return url
+        }
+    </script>
+
+</body>
+
+</html>

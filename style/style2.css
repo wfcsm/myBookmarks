@@ -1,0 +1,196 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+li{
+    list-style: none;
+}
+body{
+    background: #ddd;
+    
+}
+#main{
+    margin: 0 auto;
+    /* width: 1215px; */
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    min-width: 1383px;
+    max-width: 1384px;
+    
+}
+#main> ol {
+    padding-left: 20px;
+    /* max-width: 1383px; */
+    /* max-width: 1384px; */
+}
+
+#main> ol>li{
+    float: left;
+    /* border: 1px solid red; */
+    /* padding: 10px 30px; */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;/*主轴居中*/
+    align-items: center;/*交叉轴居中*/
+    font-family: keyboard, "Arial Rounded", Helvetica, Arial, sans-serif;
+    font-size: 24px;
+    box-sizing: border-box;
+    width: 80px;
+    height: 69px;
+    margin-right: 14px;
+    margin-bottom: 12px;
+    border-radius:8px; 
+    position: relative;
+    background: #000;
+    color: #fff;
+    box-shadow: 2px 2px 2px rgba(0, 0, 0, .5);
+    cursor: pointer;
+}
+#main> ol>li:active{
+    top: 2px;
+    box-shadow: 2px 0 2px rgba(0, 0, 0, .5);
+}
+#main> ol>li> span{
+    display: inline-block;
+  
+}
+#main> ol>#delete,
+#main> ol>#tab{
+    width: 120px;
+
+    /* padding:0 20px; */
+    /* box-sizing: content-box; */
+    
+}
+#main>ol .noMarginLeft {
+    margin-right: 0;
+}
+#main> ol> #caps-lock{
+    width: 145px;
+}
+#main> ol> #enter{
+    width: 150px;
+}
+#main> ol> #enter{
+    width: 150px;
+}
+#main> ol> .shift{
+    width: 195px;
+}
+#main> ol> #space{
+    width: 463px;
+}
+#main> ol>.special{
+    font-size: 16px;
+    
+}
+#main> ol .l{
+   display: block;
+   position: absolute;
+   left: 12px;
+   bottom: 12px;
+}
+#main> ol .r{
+   display: block;
+   position: absolute;
+   right: 12px;
+   bottom: 12px;
+}
+#main> ol .enter{
+    display: block;
+    position: absolute;
+    right: 12px;
+    top: 12px;
+ }
+ #main> ol .top{
+    display: block;
+    position: absolute;
+    top: 12px;
+ }
+ #main> ol .topr{
+    right: 12px;
+ }
+ #main> ol .topl{
+    left: 12px;
+ }
+ #main>ol .altTopL{
+     left: 20px;
+ }
+ #main>ol .altTopR{
+    right: 20px;
+}
+ #main> ol .option{
+    display: block;
+    position: absolute;
+    /* left: 12px; */
+    bottom: 12px;
+ }
+ #main> ol .command{
+    width: 95px;
+ }
+ #main> ol .arrow-wrapper{
+    width: 270px;
+ }
+ #main> ol .arrow{
+    height: 38px;
+    line-height: 38px;
+    font-size: 20px;
+ }
+ #main >ol .up{
+    margin: 0 95px 3px;
+    border-radius: 8px 8px 0 0;
+ }
+ #main >ol .down{
+
+    border-radius: 0 0 8px 8px;
+ }
+#main> ol> .tall {
+    height: 79px;
+}
+#main> ol> .clear{
+    clear:left;
+}
+
+#main .nav >.edit,
+#main .nav >.remove{
+    display: none;
+}
+#main  .nav:hover >.edit {
+    display: block;
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    line-height: 20px;
+    top: 1px;
+    left: 1px;
+    font-weight: bold;
+    background: rgb(255, 204, 0 );
+    border-radius:4px;
+}
+#main .nav:hover >.remove{
+    display: block;
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    line-height: 20px;
+    top: 1px;
+    right: 1px;
+    font-weight: bold;
+    background: rgb(255, 204, 0 );
+    border-radius:4px;
+}
+#main .nav:hover >.edit:hover,
+#main .nav:hover >.remove:hover{
+    background: black;
+    color: white;
+}
+
+#main .nav>img{
+    position: absolute;
+    bottom: 1px;
+    left: 1px; 
+}
+

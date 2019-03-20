@@ -4,29 +4,43 @@
 }
 main {
     text-align: center;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: keyboard, "Arial Rounded", Helvetica, Arial, sans-serif;
+    background: #dedede
 }
 #main {
-    display: inline-block;
-    
+    display: block;
+   
+}
+#main >div {
+    margin-top: 13px;
+}
+#main>div:nth-child(1){
+    margin-top: 0;
 }
 #main >div >kbd {
     cursor: pointer;
-    width: 60px;
-    height: 50px;
-    line-height: 50px;
-    border: 1px solid #eeeeee;
-    margin-top: 20px;
-    margin-right: 15px;
+    width: 71px;
+    height: 69px;
+    line-height: 71px;
+    border: 1px solid black;
+    /* margin-top: 20px; */
+    margin-right: 11px;
     display: inline-block;
     font-family: Frutiger,Helvetica,sans-serif;
-    font-size: 16px;
-    color: #999;
-    border-radius: 5px;
+    font-size: 24px;
+    color: white;
+    border-radius: 8px;
     position: relative;
-    
-    box-shadow: inset 0 0 2em rgba(0,0,0,.05), 0 3px 0 #ddd, 0 3px 2px rgba(0,0,0,.5);
-    text-shadow: 0 1px 0 rgba(255,255,255,.75);
-    border-top: 1px solid #fff
+    /* background: #000; */
+    background: black;
+
+    box-shadow: inset 0 0 2px rgba(0,0,0,.05), 0 3px 0 rgba(0,0,0,.05), 0 3px 2px rgba(0,0,0,.5);
+    text-shadow: 0 1px 0 rgba(0,0,0,.75);
+    border-top: 1px solid black
 }
 #main >div >kbd >.edit,
 #main >div >kbd >.remove{

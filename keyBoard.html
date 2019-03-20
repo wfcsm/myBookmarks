@@ -12,7 +12,9 @@
 <body>
     <header></header>
     <main>
-        <div id="main"></div>
+        <div id="main">
+        
+        </div>
     </main>
     <footer></footer>
 
@@ -21,10 +23,11 @@
             ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0"],
             ["q", "w", "e", "r", "t", "y", "u", "i", "o", "p"],
             ["a", "s", "d", "f", "g", "h", "j", "k", "l"],
-            ["z", "x", "c", "v", "b", "n", "m"],
+            ["z", "x", "c", "v", "b", "n", "m"]
+
         ]
         var hash = {
-            q: "qq.com",
+            q: "www.qq.com",
             w: null,
             e: null,
             r: null,
@@ -89,7 +92,7 @@
                 img.setAttribute("class", "img");
                 img.setAttribute("width", "16");
                 img.setAttribute("height", "16");
-                img.setAttribute("id","img"+key[i][j]);
+                img.setAttribute("id", "img" + key[i][j]);
 
                 url = getImageUrl(key[i][j]);
                 img.setAttribute("src", url);
@@ -109,38 +112,38 @@
 
                     let x = prompt("给我一个网址", hash[keyId]);
                     console.log(x);
-                    if(x===null){
-                        x="";
+                    if (x === null) {
+                        x = "";
                     }
                     let r = /^www\./
-                    if(!x.match(r)){
-                        x="www."+x;
+                    if (!x.match(r)) {
+                        x = "www." + x;
                     }
                     hash[keyId] = x;
-                    
+
                     localStorage.setItem("mysite", JSON.stringify(hash));
                     let url = getImageUrl(keyId);
                     console.log(url);
-                    document.getElementById("img"+keyId).setAttribute("src", url);
+                    document.getElementById("img" + keyId).setAttribute("src", url);
                     e.stopPropagation();
                 }
                 remove.onclick = function (e) {
                     var keyId = e.target.dataset.id;
-                   
+
                     hash[keyId] = undefined;
                     localStorage.setItem("mysite", JSON.stringify(hash));
                     // console.log(document.getElementById("img"+keyId))
                     // document.getElementById().removeAttribute("src");
-                    document.getElementById("img"+keyId).removeAttribute("src");
+                    document.getElementById("img" + keyId).removeAttribute("src");
                     e.stopPropagation();
                 }
 
                 kbd.onclick = function (e) {
                     let website = e.target.id;
-                    
+
                     if (hash[website] === undefined) {
-                       
-                        return 
+
+                        return
 
                     } else {
                         window.open("http://" + hash[website], "_blank")
